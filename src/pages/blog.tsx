@@ -1,45 +1,54 @@
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { FaGithub, FaRegShareSquare } from 'react-icons/fa'
 import { MdFactory } from 'react-icons/md'
-import avatar from '../assets/avatar.png'
+// import avatar from '../assets/avatar.png'
+import { Post } from '../components/post'
+import { useContext } from 'react'
+import { UserContext } from '../contexts/UserContext'
 
 export function Blog() {
+  const { user } = useContext(UserContext)
+
   return (
-    <div className="container relative mx-auto max-w-screen-lg px-4">
+    <div className="container relative mx-auto mb-56 max-w-screen-lg px-4">
       <article className="-mt-20 flex gap-8 rounded-xl bg-baseProfile p-8">
         <div>
-          <img src={avatar} alt="" className="size-36 min-w-36 object-cover" />
+          <img
+            src={user.avatar}
+            alt=""
+            className="size-36 min-w-36 object-cover"
+          />
         </div>
-        <div>
+        <div className="h-full w-full">
           <div className="flex justify-between">
             <h1 className="mb-2 mt-2 text-2xl font-bold text-baseTitle">
-              Matheus Reinheimer
+              {user.name}
             </h1>
             <a
-              href="#"
+              href={user.url}
+              target="_blank"
               className="flex items-center gap-2 text-xs font-bold uppercase text-blue hover:underline"
+              rel="noreferrer"
             >
               github
               <FaRegShareSquare className="size-3" />
             </a>
           </div>
-          <p className="">
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </p>
+          <p>{user.bio}</p>
           <div className="mt-6 flex items-center gap-6">
             <div className="flex items-center gap-2">
               <FaGithub className="text-baseLabel" />
-              <span className="text-baseSubtitle">reinheimermat</span>
+              <span className="text-baseSubtitle">{user.login}</span>
             </div>
             <div className="flex items-center gap-2">
               <MdFactory className="text-baseLabel" />
-              <span className="text-baseSubtitle">Mave Tecnologia</span>
+              <span className="text-baseSubtitle">{user.company}</span>
             </div>
             <div className="flex items-center gap-2">
               <BsFillPeopleFill className="text-baseLabel" />
-              <span className="text-baseSubtitle">32 Seguidores</span>
+              <span className="text-baseSubtitle">
+                {user.followers} Seguidores
+              </span>
             </div>
           </div>
         </div>
@@ -56,6 +65,12 @@ export function Blog() {
           placeholder="Buscar Conteúdo"
           className="w-full rounded-md bg-baseInput p-3 outline outline-1 outline-baseBorder placeholder:text-baseLabel focus:outline-blue"
         />
+      </div>
+
+      <div className="mt-12 grid grid-cols-2 gap-8">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <Post key={index} />
+        ))}
       </div>
     </div>
   )
