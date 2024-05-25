@@ -1,13 +1,14 @@
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { FaGithub, FaRegShareSquare } from 'react-icons/fa'
 import { MdFactory } from 'react-icons/md'
-// import avatar from '../assets/avatar.png'
-import { Post } from '../components/post'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
+import { SearchIssues } from '../components/searchIssues'
+import { Post } from '../components/post'
 
 export function Blog() {
   const { user } = useContext(UserContext)
+  const { issues } = useContext(UserContext)
 
   return (
     <div className="container relative mx-auto mb-56 max-w-screen-lg px-4">
@@ -53,23 +54,16 @@ export function Blog() {
           </div>
         </div>
       </article>
-      <div className="mt-20">
-        <div className="mb-3 flex items-center justify-between">
-          <strong className="text-lg font-bold text-baseSubtitle">
-            Publicações
-          </strong>
-          <span className="text-sm text-baseSpan">6 publicações</span>
-        </div>
-        <input
-          type="text"
-          placeholder="Buscar Conteúdo"
-          className="w-full rounded-md bg-baseInput p-3 outline outline-1 outline-baseBorder placeholder:text-baseLabel focus:outline-blue"
-        />
-      </div>
+      <SearchIssues />
 
       <div className="mt-12 grid grid-cols-2 gap-8">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Post key={index} />
+        {issues.map((item, index) => (
+          <Post
+            key={index}
+            title={item.title}
+            body={item.body}
+            date={item.createdAt}
+          />
         ))}
       </div>
     </div>
