@@ -18,11 +18,11 @@ export function Post({ title, body, createdAt, id }: PostProps) {
 
   return (
     <div
-      className="max-h-64 rounded-xl bg-basePost p-8"
+      className="max-h-64 cursor-pointer rounded-xl border-2 border-basePost bg-basePost p-8 hover:border-baseLabel"
       onClick={handleViewPost}
     >
       <div className="mb-5 flex items-start justify-between">
-        <h1 className="text-xl font-bold text-baseTitle">{title}</h1>
+        <h1 className="me-4 text-xl font-bold text-baseTitle">{title}</h1>
         <span className="text-nowrap text-sm text-baseSpan">
           {formatDistanceToNow(new Date(createdAt), {
             addSuffix: true,

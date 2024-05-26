@@ -12,7 +12,7 @@ export function Blog() {
 
   return (
     <div className="container relative mx-auto mb-56 max-w-screen-lg px-4">
-      <article className="-mt-20 flex gap-8 rounded-xl bg-baseProfile p-8">
+      <article className="-mt-20 flex flex-col gap-8 rounded-xl bg-baseProfile p-8 md:flex-row">
         <div>
           <img
             src={user.avatar}
@@ -56,7 +56,7 @@ export function Blog() {
       </article>
       <SearchIssues />
 
-      <div className="mt-12 grid grid-cols-2 gap-8">
+      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
         {issues.map((item) => (
           <Post
             key={item.id}

@@ -6,3 +6,9 @@
     outline: 1px solid #3294F8;
     border-radius: 6px;
 }
+
+@media (max-width: 575.98px) {
+    html {
+        font-size: 12px;
+    }
+}
