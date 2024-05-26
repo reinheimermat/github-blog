@@ -17,13 +17,14 @@ interface User {
   url: string
 }
 
-interface Issues {
+export interface Issues {
   id: number
   title: string
   body: string
   total: number
   comments: number
-  createdAt: string
+  created_at: string
+  html_url: string
 }
 
 interface UserContextData {
@@ -74,7 +75,8 @@ export function UserProvider({ children }: UserProviderProps) {
             body: issue.body,
             total: issue.comments,
             comments: issue.comments,
-            createdAt: issue.createdAt,
+            created_at: issue.created_at,
+            html_url: issue.html_url,
           },
         ]
       })
