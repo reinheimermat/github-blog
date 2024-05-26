@@ -57,12 +57,13 @@ export function Blog() {
       <SearchIssues />
 
       <div className="mt-12 grid grid-cols-2 gap-8">
-        {issues.map((item, index) => (
+        {issues.map((item) => (
           <Post
-            key={index}
+            key={item.id}
             title={item.title}
             body={item.body}
-            date={item.createdAt}
+            createdAt={item.created_at}
+            id={item.id}
           />
         ))}
       </div>
